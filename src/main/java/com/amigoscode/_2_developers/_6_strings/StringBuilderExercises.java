@@ -18,9 +18,11 @@ public class StringBuilderExercises {
      */
     public static String buildGreeting(String name, int age) {
         // TODO: 1 - Create a new StringBuilder.
+        StringBuilder sb = new StringBuilder();
+        sb.append("hello, ").append(name).append("! You are ").append(age).append(" years old.");
         //  Append "Hello, ", then name, then "! You are ", then age, then " years old."
         //  Convert to String and return.
-        return null;
+        return sb.toString();
     }
 
     /**
@@ -33,10 +35,12 @@ public class StringBuilderExercises {
      */
     public static String insertMiddleName(String fullName, String middleName) {
         // TODO: 2 - Create a StringBuilder from fullName.
+        StringBuilder sb = new StringBuilder(fullName);
         //  Find the index of the first space using indexOf(" ").
+        var spaceIndex = sb.indexOf(" ");
         //  Insert middleName + " " at position (spaceIndex + 1).
         //  Convert to String and return.
-        return null;
+        return sb.insert(spaceIndex + 1, middleName+" ").toString();
     }
 
     /**
@@ -47,11 +51,18 @@ public class StringBuilderExercises {
      */
     public static String removeVowels(String text) {
         // TODO: 3 - Create a StringBuilder from text.
+        StringBuilder sb = new StringBuilder(text);
+        var ch = "aeiouAEIOU";
         //  Loop through the StringBuilder (backwards is easier for deletion!).
+        for (int i = sb.length() - 1; i >= 0; i--) {
+            if(ch.indexOf(sb.charAt(i)) >= 0) {
+                sb.deleteCharAt(i);
+            }
+        }
         //  Use deleteCharAt(i) to remove characters that are vowels.
         //  Hint: check if "aeiouAEIOU".indexOf(ch) >= 0
         //  Convert to String and return.
-        return null;
+        return sb.toString();
     }
 
     /**
@@ -62,7 +73,8 @@ public class StringBuilderExercises {
      */
     public static String reverseText(String text) {
         // TODO: 4 - Create a StringBuilder from text, call reverse(), convert to String.
-        return null;
+        StringBuilder sb = new StringBuilder(text);
+        return sb.reverse().toString();
     }
 
     /**
@@ -74,11 +86,14 @@ public class StringBuilderExercises {
      */
     public static String convertDemo(String text) {
         // TODO: 5 - Convert 'text' to a StringBuilder.
+        StringBuilder sb = new StringBuilder(text);
         //  Use toString() to convert the StringBuilder to a String.
         //  Call toUpperCase() on that String (String method, not StringBuilder).
+        var uppercaseText = sb.toString().toUpperCase();
         //  Create a new StringBuilder from the uppercased String, append "!!!"
         //  Return the final String.
-        return null;
+        sb = new StringBuilder(uppercaseText);
+        return sb.append("!!!").toString();
     }
 
     /**
@@ -90,11 +105,20 @@ public class StringBuilderExercises {
      */
     public static String buildCsvLine(String[] values) {
         // TODO: 6 - Create a StringBuilder.
+        StringBuilder sb = new StringBuilder();
         //  Loop through the values array.
         //  Append each value, and append a comma between values (but NOT after the last one).
+        for(int i = 0; i < values.length; i++) {
+            sb.append(values[i] + ", ");
+
+            if(i == values.length - 1){
+                var sbIndex = sb.length() - 1;
+                sb.deleteCharAt(sbIndex - 1);
+            }
+        }
         //  Hint: you can check if it's not the last element, or use deleteCharAt at the end.
         //  Return the result as a String.
-        return null;
+        return sb.toString();
     }
 
     public static void main(String[] args) {
@@ -105,7 +129,7 @@ public class StringBuilderExercises {
         System.out.println(insertMiddleName("John Smith", "Michael"));
 
         System.out.println("\n=== Remove Vowels ===");
-        System.out.println(removeVowels("Hello World"));
+        System.out.println(removeVowels("alma kalap eleme"));
 
         System.out.println("\n=== Reverse ===");
         System.out.println(reverseText("Java"));

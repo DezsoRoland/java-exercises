@@ -1,5 +1,7 @@
 package com.amigoscode._2_developers._6_strings;
 
+import java.util.Arrays;
+
 /**
  * String Methods Exercises
  *
@@ -18,8 +20,12 @@ public class StringMethods {
      */
     public static String compareEquality(String a, String b) {
         // TODO: 1 - Use equals() and equalsIgnoreCase() to compare a and b.
+        boolean isEqual = a.equals(b);
+
+        boolean isEqualWithIgnoredCase = a.equalsIgnoreCase(b);
+
         //  Return a string in the format: "equals: <result>, equalsIgnoreCase: <result>"
-        return null;
+        return "equals: <" + isEqual + ">, equalsIgnoreCase: <" + isEqualWithIgnoredCase + ">";
     }
 
     /**
@@ -32,8 +38,21 @@ public class StringMethods {
      */
     public static String compareLexicographic(String a, String b) {
         // TODO: 2 - Use a.compareTo(b) and return:
+        var result = a.compareTo(b);
         //  "before" if result < 0, "equal" if result == 0, "after" if result > 0.
-        return null;
+
+        String compare = "";
+
+        if(result < 0) {
+           compare = "before";
+        } else if (result == 0) {
+            compare = "equal";
+        } else {
+            compare = "after";
+        };
+
+        return compare;
+
     }
 
     /**
@@ -46,9 +65,14 @@ public class StringMethods {
      */
     public static String searchString(String text, String keyword) {
         // TODO: 3 - Use contains() to check if text contains keyword.
+        boolean doesContain = text.contains(keyword);
         //  Use indexOf() to find the position of keyword in text.
+        int index = 0;
+        if (doesContain) {
+            index = text.indexOf(keyword);
+        }
         //  Return "contains: <bool>, indexOf: <index>"
-        return null;
+        return "contains: <" + doesContain + ">, indexOf: <" + index + ">";
     }
 
     /**
@@ -62,9 +86,9 @@ public class StringMethods {
      */
     public static String replaceDemo(String text, String oldWord, String newWord) {
         // TODO: 4 - First use replace(oldWord, newWord) to swap words.
+        String newText = text.replace(oldWord, newWord);
         //  Then use replaceAll("\\d", "#") to replace all digits with "#".
-        //  Return the final result.
-        return null;
+        return newText.replaceAll("\\d", "#");
     }
 
     /**
@@ -77,9 +101,15 @@ public class StringMethods {
      */
     public static String splitDemo(String text, String delimiter) {
         // TODO: 5 - Use text.split(delimiter) to get an array of parts.
+        String[] part = text.split(delimiter);
         //  Build a result string with each part on a new line: "[i] part"
         //  Example: "[0] apple\n[1] banana\n[2] cherry"
-        return null;
+        StringBuilder textWithIndex = new StringBuilder();
+        for (int i = 0; i < part.length; i++) {
+            textWithIndex.append("[").append(i).append("] ").append(part[i]).append("\n");
+        }
+
+        return textWithIndex.toString();
     }
 
     /**
@@ -92,8 +122,10 @@ public class StringMethods {
      */
     public static String checkStartEnd(String filename, String prefix, String extension) {
         // TODO: 6 - Use startsWith(prefix) and endsWith(extension).
+        boolean doesStart = filename.startsWith(prefix);
+        boolean doesEnd = filename.endsWith(extension);
         //  Return: "startsWith '<prefix>': <bool>, endsWith '<extension>': <bool>"
-        return null;
+        return "startsWith <" + prefix + ">: " + doesStart + ", endsWith <" + extension + ">: " + doesEnd;
     }
 
     /**
@@ -106,8 +138,9 @@ public class StringMethods {
      */
     public static String substringDemo(String text, int beginIndex, int endIndex) {
         // TODO: 7 - Use text.substring(beginIndex, endIndex) to extract a portion of text.
+        String subS = text.substring(beginIndex, endIndex);
         //  Return the substring.
-        return null;
+        return subS;
     }
 
     /**
@@ -122,7 +155,7 @@ public class StringMethods {
     public static String formatReceipt(String item, int quantity, double price) {
         // TODO: 8 - Use String.format() to create a formatted string.
         //  Format: "%-15s x%-5d $%.2f" (left-align item in 15 chars, quantity in 5, price with 2 decimals)
-        return null;
+        return String.format("%-15s x%-5d $%.2f", item, quantity, price);
     }
 
     public static void main(String[] args) {
