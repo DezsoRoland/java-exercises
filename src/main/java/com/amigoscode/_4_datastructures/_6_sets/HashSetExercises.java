@@ -3,38 +3,42 @@ package com.amigoscode._4_datastructures._6_sets;
 // Exercise: HashSet Operations
 // Learn how to use HashSet - an unordered collection that contains no duplicate elements.
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class HashSetExercises {
 
     public static void main(String[] args) {
 
         // TODO: 1 - Create a HashSet of Strings called 'fruits'
-
+        Set<String> fruits = new HashSet<>();
 
         // TODO: 2 - Add elements: "Apple", "Banana", "Cherry", "Apple", "Date", "Banana"
         //           Print the set after adding all elements
         //           Observe that duplicates are automatically ignored
-
-
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Cherry");
+        fruits.add("Apple");
+        fruits.add("Date");
+        fruits.add("Banana");
+        System.out.println(fruits);
         // TODO: 3 - Check if "Cherry" exists in the set using contains()
         //           Print the result
-
+        System.out.println("Contains cherry: " + fruits.contains("Cherry"));
 
         // TODO: 4 - Remove "Date" from the set
         //           Print the set after removal
-
+        fruits.remove("Date");
+        System.out.println("after remove date: " + fruits);
 
         // TODO: 5 - Get and print the size of the set
-
+        System.out.println("size: " + fruits.size());
 
         // TODO: 6 - Iterate over the set using a for-each loop and print each element
         //           Note: the order may not match insertion order (HashSet is unordered)
-
+        for (String fruit : fruits) {
+            System.out.println(fruit);
+        }
 
         // --- Removing Duplicates from a List ---
         System.out.println("\n--- Removing Duplicates ---");
@@ -47,5 +51,8 @@ public class HashSetExercises {
         //           Create a new HashSet from the list, then create a new ArrayList from the set
         //           Print the deduplicated list
 
+        Set<String> list = new HashSet<>(listWithDuplicates);
+        List<String> alist = new ArrayList<>(list);
+        System.out.println("deduplicated list: " + alist);
     }
 }
